@@ -8,20 +8,23 @@
     <body>
         <p>Welcome to Cosy Corners!</p>
         
-        <script src="script_src.js"></script>
+        <!--Firebase script tags-->
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
         <script>
-          // Initialize Firebase
-          // TODO: Replace with your project's customized code snippet
-          var config = {
-            apiKey: "<API_KEY>",
-            authDomain: "<PROJECT_ID>.firebaseapp.com",
-            databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
-            projectId: "<PROJECT_ID>",
-            storageBucket: "<BUCKET>.appspot.com",
-            messagingSenderId: "<SENDER_ID>",
-          };
-          firebase.initializeApp(config);
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyAygq0tLgaeM8VeonitdikXEDNHxr04WL8",
+                authDomain: "mobileproject-a5e52.firebaseapp.com",
+                databaseURL: "https://mobileproject-a5e52.firebaseio.com",
+                projectId: "mobileproject-a5e52",
+                storageBucket: "mobileproject-a5e52.appspot.com",
+                messagingSenderId: "218665151704"
+            };
+            firebase.initializeApp(config);
         </script>
+        <!--Other script tags-->
+        <script src="script_src.js"></script>
     </body>
 </html>
