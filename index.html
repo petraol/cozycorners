@@ -7,11 +7,14 @@
     </head>
     <body>
         <p>Welcome to Cosy Corners!</p>
+        <button onclick="createUser('Hanna')">Press me first</button>
+        <button onclick="createPlace('Hanna', 'bild', 'hej', 'petras place', 'kaffe, vatten', 10.3, 20.5)">Press me</button>
         
         <!--Firebase script tags-->
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
         <script>
             // Initialize Firebase
             var config = {
@@ -23,8 +26,10 @@
                 messagingSenderId: "218665151704"
             };
             firebase.initializeApp(config);
+            var database = firebase.database();
         </script>
         <!--Other script tags-->
         <script src="script_src.js"></script>
+        <script src="createPlaceCtrl.js"></script>
     </body>
 </html>
