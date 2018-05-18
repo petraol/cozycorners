@@ -233,14 +233,6 @@ function closeList() {
 
 //MAP FUNCTIONS
 var map;
-//var markers = []; // Create a marker array to hold your markers
-/*var beaches = [
-    ['KTH', 59.3498092, 18.0684758, 4],
-    ['Borggården', 59.347462, 18.073772, 5],
-    ['Cronulla Beach', 10, 12, 3],
-    ['Manly Beach', 10, 13, 2],
-    ['Maroubra Beach', 10, 14, 1]
-];*/
 
 function initMap() {
 
@@ -301,25 +293,6 @@ function initMap() {
       placeMarkerAndPanTo(e.latLng, map);
     });*/
   }
-
-  function setMarkers(locations) {
-
-    for (var i = 0; i < locations.length; i++) {
-        var beach = locations[i];
-        var myLatLng = new google.maps.LatLng(beach[1], beach[2]);
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title: beach[0],
-            zIndex: beach[3]
-        });
-
-        // Push marker to markers array
-        markers.push(marker);
-    }
-}
-
 
   function placeMarkerAndPanTo(latLng, map) {
     var icon = {
