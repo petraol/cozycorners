@@ -33,13 +33,20 @@
              <input type="button" value="Create Place" onclick="createPlace()">
         </form>
         
-        <button onclick="getAllPlaces()">Click me</button>
+        <h1>All places</h1>
+        <button onclick="getAllPlaces()">Click me to get places</button>
+        Filter by user: <input type="text" id="myText" value=""><button onclick="filterPlaceByUser()">Filter</button>
+        Filter by tag: <input type="text" id="myTag" value=""><button onclick="filterByTag()">Search</button>
+        Search place: <input type="text" id="mySearch" value=""><button onclick="searchByName()">Search</button>
+        <div id="myPlace"></div>
         
         <!--Firebase script tags-->
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
+        
+
         <script>
             // Initialize Firebase
             var config = {

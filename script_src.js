@@ -1,5 +1,6 @@
 //add script here
 currentUser = null;
+places = new Array();
 
 function createPlace() {
     username = currentUser;
@@ -11,6 +12,7 @@ function createPlace() {
     location_long = document.getElementById("location_long").value;
     console.log(username, picture, description, name, tags, location_lat, location_long)
     firebase.database().ref('locations/' + name).set({
+        place: name,
         username: username,
         picture: picture,
         description: description,
@@ -56,12 +58,6 @@ function createUser() {
 }
 
 function updateUser(name) {
-  // A post entry.
-
-  // Get a key for a new Post.
-  //var newPostKey = firebase.database().ref().child('users/' + username).push().key;
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
 
 firebase.database().ref('users/' + username + '/locations/' + name).set({
         place: name
@@ -99,32 +95,88 @@ function setCurrentUser(username) {
 }
 
 function getAllPlaces() {
-    places = [];
-    firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
-        places.push()
-        console.log(snapshot.val());
+    document.getElementById("myPlace").innerHTML = "";
+    return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            
+            var place = childSnapshot.val();
+            the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
+            //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+            var element = document.getElementById("myPlace");
+            var node = document.createElement("LI");   
+            var textnode = document.createTextNode(place.place);
+            node.appendChild(textnode);
+            element.appendChild(node);
+            
+        });
     });
 }
 
-function searchForTag() {
-    
+function filterByTag() {
+    document.getElementById("myPlace").innerHTML = "";
+    search = document.getElementById("myTag").value;
+        return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var place = childSnapshot.val();
+            console.log(place.tags);
+            if (place.tags.indexOf(search) >= 0) {
+                the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
+                //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+                var element = document.getElementById("myPlace");
+                var node = document.createElement("LI");   
+                var textnode = document.createTextNode(place.place);
+                node.appendChild(textnode);
+                element.appendChild(node);
+            }    
+        });
+    });
 }
 
 function searchByName() {
-    
+    document.getElementById("myPlace").innerHTML = "";
+    search = document.getElementById("mySearch").value;
+        return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var place = childSnapshot.val();
+            console.log(place.place);
+            if (search == place.place) {
+                the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
+                //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+                var element = document.getElementById("myPlace");
+                var node = document.createElement("LI");   
+                var textnode = document.createTextNode(place.place);
+                node.appendChild(textnode);
+                element.appendChild(node);
+            }    
+        });
+    });
 }
 
-function filterPlaceByUser(user) {
+function filterPlaceByUser() {
+    document.getElementById("myPlace").innerHTML = "";
+    user = document.getElementById("myText").value;
     places_from_user = [];
-    places = [];
     firebase.database().ref('/users/' + user + "/locations").orderByChild('place').on('value', function(snapshot) {
-        //console.log(snapshot.val());
         snapshot.forEach(function(childSnapshot) {
             var place = childSnapshot.child('place').val();
 			places_from_user.push(place);
         });
+        
+        return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var place = childSnapshot.val();
+            console.log(places_from_user);
+            console.log(place.place);
+            if (places_from_user.indexOf(place.place) >= 0) {
+                the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
+                //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+                var element = document.getElementById("myPlace");
+                var node = document.createElement("LI");   
+                var textnode = document.createTextNode(place.place);
+                node.appendChild(textnode);
+                element.appendChild(node);
+            }    
+        });
     });
-    
-    console.log(places_from_user);
-    return places;
+    });
 }
