@@ -57,20 +57,15 @@ function createUser() {
 
 function updateUser(name) {
   // A post entry.
-  var postData = {
-            place: name
-            }
 
   // Get a key for a new Post.
   //var newPostKey = firebase.database().ref().child('users/' + username).push().key;
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
-  var updates = {};
 
-  updates['/users/' + username + '/locations'] = postData;
-
-  return firebase.database().ref().update(updates);
-    console.log("Updated user locations");
+firebase.database().ref('users/' + username + '/locations/' + name).set({
+        place: name
+        });  
 }
     
 
@@ -101,4 +96,35 @@ function login(username, dbpassword, password) {
 function setCurrentUser(username) {
     currentUser = username;
     console.log("currentUser", currentUser)
+}
+
+function getAllPlaces() {
+    places = [];
+    firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+        places.push()
+        console.log(snapshot.val());
+    });
+}
+
+function searchForTag() {
+    
+}
+
+function searchByName() {
+    
+}
+
+function filterPlaceByUser(user) {
+    places_from_user = [];
+    places = [];
+    firebase.database().ref('/users/' + user + "/locations").orderByChild('place').on('value', function(snapshot) {
+        //console.log(snapshot.val());
+        snapshot.forEach(function(childSnapshot) {
+            var place = childSnapshot.child('place').val();
+			places_from_user.push(place);
+        });
+    });
+    
+    console.log(places_from_user);
+    return places;
 }
