@@ -7,49 +7,49 @@ body {
 } 
 
 html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}	
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}   
 
  #welcome {
-	text-align: center;
-	color: #ffffff;
+    text-align: center;
+    color: #ffffff;
 }
 
 h1, header {
-	/*font-family: "Vibur"; */
-	text-align: center;
-	color: #ffffff;
+    /*font-family: "Vibur"; */
+    text-align: center;
+    color: #ffffff;
 }
 
  input {
-	display: block;
+    display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
 }
 
-.text, #outBtn, #theUsername {
-	display: block;
+.text, .outBtn, #theUsername {
+    display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
 .center {
-	border-radius: 50%;
-	padding-top: 15px;
-	padding-bottom: 12px;
-	height: 250px;
-	width: 250px;
-	display: block;
+    border-radius: 50%;
+    padding-top: 15px;
+    padding-bottom: 12px;
+    height: 250px;
+    width: 250px;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 #singupPage {
-	font-size: 20px;
+    font-size: 20px;
     color: #ffffff;
     display: block;
     padding-bottom: 10px;
@@ -58,38 +58,38 @@ h1, header {
 }
 
 #signupDiv {
-	padding-top: 45%;
-	display: block;
+    padding-top: 45%;
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 #signup {
-	height: 100%;
-	background: linear-gradient( to bottom right, #ffffff, #00adc1);
+    height: 100%;
+    background: linear-gradient( to bottom right, #ffffff, #00adc1);
 }
 
 #target {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	/*background: linear-gradient(#4286f4, #29f448);
-	background: linear-gradient(to bottom right, #d1f9ff, #005f6d);*/
-	background: linear-gradient(#ffffff, #00adc1);
-	z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    /*background: linear-gradient(#4286f4, #29f448);
+    background: linear-gradient(to bottom right, #d1f9ff, #005f6d);*/
+    background: linear-gradient(#ffffff, #00adc1);
+    z-index: 3;
 }
 
 #welcome {
-	font-style: italic;
+    font-style: italic;
 }
 
 #welcomeDiv {
-	position: absolute;
-	top: 23%; /*35%*/
-	font-size: 18px;
-	/*text-shadow: 0 0 3px #ffffff;*/
+    position: absolute;
+    top: 23%; /*35%*/
+    font-size: 18px;
+    /*text-shadow: 0 0 3px #ffffff;*/
 }
 
 #map {
@@ -97,18 +97,18 @@ h1, header {
 }
 
 .openNav {
-	font-size: 30px;
-	cursor: pointer;
-	background-color: white;
-	padding-right: 3px;
-	padding-left: 3px;
-	border-radius: 3px;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: white;
+    padding-right: 3px;
+    padding-left: 3px;
+    border-radius: 3px;
 }
 
 #openIt {
-	padding-left: 10px;
-	padding-top: 7px;
-	position: fixed;
+    padding-left: 10px;
+    padding-top: 7px;
+    position: fixed;
     z-index: 2;
     cursor: pointer;
 }
@@ -137,7 +137,7 @@ h1, header {
 }
 
 #theUsername {
-	text-decoration: none;
+    text-decoration: none;
     font-size: 35px;
     color: #00adc1;
     display: block;
@@ -182,13 +182,13 @@ h1, header {
 }
 
 #outBtn {
-	border-radius: 100px;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #00adc1; 
-	color: #00adc1;
-	font-family: "Quicksand";
-	display: block;
+    border-radius: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #00adc1; 
+    color: #00adc1;
+    font-family: "Quicksand";
+    display: block;
 }
 
 input[type=button] {
@@ -204,16 +204,16 @@ input[type=button] {
 }
 
 #outBtnDiv {
-	display: block;
-	width: 300px;
-	position: fixed;
-	padding-top: 15vh;
+    display: block;
+    width: 300px;
+    position: fixed;
+    padding-top: 15vh;
 }
 
 #or {
-	text-align: center;
-	font-size: 18px;
-	color: #00adc1;
+    text-align: center;
+    font-size: 18px;
+    color: #00adc1;
 }
 
 #logo {
