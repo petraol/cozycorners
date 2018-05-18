@@ -2,6 +2,8 @@
 currentUser = null;
 places = new Array();
 
+getAllPlaces();
+
 document.getElementById("loggedIn").style.display = "none";
 document.getElementById("signupPage").style.display = "none";
 document.getElementById("newPlace").style.display = "none";
@@ -105,25 +107,29 @@ function setCurrentUser(username) {
 }
 
 function getAllPlaces() {
-    document.getElementById("myPlace").innerHTML = "";
+    //document.getElementById("myPlace").innerHTML = "";
     return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             
             var place = childSnapshot.val();
             the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
             //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
-            var element = document.getElementById("myPlace");
-            var node = document.createElement("LI");   
-            var textnode = document.createTextNode(place.place);
-            node.appendChild(textnode);
-            element.appendChild(node);
+
+            var myLatLng = new google.maps.LatLng(place.location_lat, place.location_long);
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                animation: google.maps.Animation.DROP,
+                title: place.place
+            });
+
             
         });
     });
 }
 
 function filterByTag() {
-    document.getElementById("myPlace").innerHTML = "";
+    //document.getElementById("myPlace").innerHTML = "";
     search = document.getElementById("myTag").value;
         return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -132,18 +138,18 @@ function filterByTag() {
             if (place.tags.indexOf(search) >= 0) {
                 the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
                 //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
-                var element = document.getElementById("myPlace");
+                /*var element = document.getElementById("myPlace");
                 var node = document.createElement("LI");   
                 var textnode = document.createTextNode(place.place);
                 node.appendChild(textnode);
-                element.appendChild(node);
+                element.appendChild(node);*/
             }    
         });
     });
 }
 
 function searchByName() {
-    document.getElementById("myPlace").innerHTML = "";
+    //document.getElementById("myPlace").innerHTML = "";
     search = document.getElementById("mySearch").value;
         return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -152,18 +158,18 @@ function searchByName() {
             if (search == place.place) {
                 the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
                 //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
-                var element = document.getElementById("myPlace");
+                /*var element = document.getElementById("myPlace");
                 var node = document.createElement("LI");   
                 var textnode = document.createTextNode(place.place);
                 node.appendChild(textnode);
-                element.appendChild(node);
+                element.appendChild(node);*/
             }    
         });
     });
 }
 
 function filterPlaceByUser() {
-    document.getElementById("myPlace").innerHTML = "";
+    //document.getElementById("myPlace").innerHTML = "";
     user = document.getElementById("myText").value;
     places_from_user = [];
     firebase.database().ref('/users/' + user + "/locations").orderByChild('place').on('value', function(snapshot) {
@@ -180,11 +186,11 @@ function filterPlaceByUser() {
             if (places_from_user.indexOf(place.place) >= 0) {
                 the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
                 //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
-                var element = document.getElementById("myPlace");
+                /*var element = document.getElementById("myPlace");
                 var node = document.createElement("LI");   
                 var textnode = document.createTextNode(place.place);
                 node.appendChild(textnode);
-                element.appendChild(node);
+                element.appendChild(node);*/
             }    
         });
     });
@@ -227,14 +233,14 @@ function closeList() {
 
 //MAP FUNCTIONS
 var map;
-var markers = []; // Create a marker array to hold your markers
-var beaches = [
+//var markers = []; // Create a marker array to hold your markers
+/*var beaches = [
     ['KTH', 59.3498092, 18.0684758, 4],
     ['Borggården', 59.347462, 18.073772, 5],
     ['Cronulla Beach', 10, 12, 3],
     ['Manly Beach', 10, 13, 2],
     ['Maroubra Beach', 10, 14, 1]
-];
+];*/
 
 function initMap() {
 
@@ -250,7 +256,7 @@ function initMap() {
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    setMarkers(beaches);
+    //setMarkers(beaches);
 
     /*// Bind event listener on button to reload markers
     document.getElementById('reloadMarkers').addEventListener('click', reloadMarkers);*/
