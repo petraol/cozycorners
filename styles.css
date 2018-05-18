@@ -181,7 +181,7 @@ h1, header {
     font-family: "Quicksand";
 }
 
-#outBtn {
+.outBtn {
     border-radius: 100px;
     padding: 10px;
     font-size: 16px;
