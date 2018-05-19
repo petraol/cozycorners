@@ -1,6 +1,7 @@
 //add script here
 currentUser = null;
 places = new Array();
+var markers = [];
 
 getAllPlaces();
 
@@ -114,15 +115,23 @@ function getAllPlaces() {
             var place = childSnapshot.val();
             the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
             //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
-
+            var icon = {
+                url: place.picture,
+                scaledSize: new google.maps.Size(50, 50),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
+            };
+            
             var myLatLng = new google.maps.LatLng(place.location_lat, place.location_long);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
                 animation: google.maps.Animation.DROP,
-                title: place.place
+                title: place.place,
+                icon: icon
             });
 
+            markers.push(marker);
             
         });
     });
@@ -148,24 +157,50 @@ function filterByTag() {
     });
 }
 
+
+ function setMapOnAll(map) {
+    for (var i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+    setMapOnAll(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+    setMapOnAll(map);
+}
+
 function searchByName() {
     //document.getElementById("myPlace").innerHTML = "";
     search = document.getElementById("mySearch").value;
-        return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
+
+                for (var i = 0; i < markers.length; i++) {
+                console.log(markers[i].title);
+                console.log(search);
+                if (markers[i].title != search) {
+                    markers[i].setMap(null);
+                }
+            }
+       /* return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var place = childSnapshot.val();
             console.log(place.place);
             if (search == place.place) {
                 the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
                 //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+
                 /*var element = document.getElementById("myPlace");
                 var node = document.createElement("LI");   
                 var textnode = document.createTextNode(place.place);
                 node.appendChild(textnode);
-                element.appendChild(node);*/
+                element.appendChild(node);
             }    
         });
-    });
+    });*/
 }
 
 function filterPlaceByUser() {
