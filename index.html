@@ -56,7 +56,7 @@
 
     <!-- LOGGED IN VIEW -->
           <div id="loggedIn">
-            <img src="images/xSAzPfw.jpg" alt="the pope" class="center">
+            <img id="profilepic" class="center">
             <span id="theUsername">Username</span>
             <span class="text" onclick="newPlace()">Add a cosy corners</span>        
           </div> 
@@ -67,36 +67,40 @@
         <div id="newPlace">
             <div class="closeBtn" onclick="closeList()">&times;</div>
             <form>
-                Picture: <input class="searchBar" type="text" id="picture"><br>
                 Decription: <input class="searchBar" type="text" id="description"><br>
                 Name of place: <input class="searchBar" type="text" id="name"><br>
                 Tags: <input class="searchBar" type="text" id="tags"><br>
                 Location (latitude): <input class="searchBar" type="text" id="location_lat"><br>
                 Location (longitude): <input class="searchBar" type="text" id="location_long"><br>
+                  <input type="file" accept="image/*" id="picture">
                  <input id="outBtn" type="button" value="Create Place" onclick="createPlace()">
             </form>
+            <button onclick="drawPicture('Borggården')">Show picture</button>
+            <img height="125" width="50" id="viewport"/>
             </div>
 
     <!-- THE MAP -->
         <div id="map"></div>
 
         <!--Firebase script tags-->
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
+        <!--script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script-->
+        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
         <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyAygq0tLgaeM8VeonitdikXEDNHxr04WL8",
-                authDomain: "mobileproject-a5e52.firebaseapp.com",
-                databaseURL: "https://mobileproject-a5e52.firebaseio.com",
-                projectId: "mobileproject-a5e52",
-                storageBucket: "mobileproject-a5e52.appspot.com",
-                messagingSenderId: "218665151704"
-            };
-            firebase.initializeApp(config);
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyAygq0tLgaeM8VeonitdikXEDNHxr04WL8",
+            authDomain: "mobileproject-a5e52.firebaseapp.com",
+            databaseURL: "https://mobileproject-a5e52.firebaseio.com",
+            projectId: "mobileproject-a5e52",
+            storageBucket: "mobileproject-a5e52.appspot.com",
+            messagingSenderId: "218665151704"
+          };
+          firebase.initializeApp(config);
             var database = firebase.database();
+            var storage = firebase.storage();
         </script>
         <!--Other script tags-->
         <script src="script_src.js"></script>
