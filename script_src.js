@@ -2,8 +2,16 @@
 currentUser = null;
 places = new Array();
 var markers = [];
+let firstFile;
+var context;
 
 getAllPlaces();
+
+picture = document.getElementById("picture");                
+picture.addEventListener('change', function(evt) {
+    console.log("laddar up fil!!!!")
+      firstFile = evt.target.files[0] // upload the first file only
+  })
 
 document.getElementById("loggedIn").style.display = "none";
 document.getElementById("signupPage").style.display = "none";
@@ -12,23 +20,41 @@ var hamburger = document.getElementById("openIt");
 
 function createPlace() {
     username = currentUser;
-    picture = document.getElementById("picture").value;
+    picture = document.getElementById("picture");
     description = document.getElementById("description").value;
     name = document.getElementById("name").value;
     tags = document.getElementById("tags").value;
     location_lat = document.getElementById("location_lat").value;
     location_long = document.getElementById("location_long").value;
-    console.log(username, picture, description, name, tags, location_lat, location_long)
+    console.log(username, picture.name, description, name, tags, location_lat, location_long)
     firebase.database().ref('locations/' + name).set({
         place: name,
         username: username,
-        picture: picture,
+        picture: firstFile.name,
         description: description,
         tags: tags,
         location_lat: location_lat,
         location_long: location_long
         });  
+    
+    if (picture.size > 1024000) {
+		        	window.alert("The profile picture you tried to upload is too big (MAX 1 MB)! Try again.");
+		        	return;
+		        }
+
+		        else {
+                    console.log(picture.size)
+					var storageRef = firebase.storage().ref();
+
+                    storageRef.child("places/" + firstFile.name).put(firstFile)
+                    
+                    //storageRef.put(firstFile).then(function(snapshot) {
+                    //  console.log('Uploaded a blob or file!');
+                    //});
+				}
+    
     updateUser(name);
+    //drawPicture(name);
     console.log("Created new place: ", name);
 }
 
@@ -64,6 +90,7 @@ function createUser() {
                 }
             }
         });  
+    
 }
 
 function updateUser(name) {
@@ -98,6 +125,7 @@ function login(username, dbpassword, password) {
     else {
         console.log("Fel lösenord eller användarnamn!")
     }
+    drawProfilePicture();
             
 }
 
@@ -230,6 +258,54 @@ function filterPlaceByUser() {
         });
     });
     });
+}
+
+function drawLocationPicture(location) {
+    console.log("drawing picture: ", location)
+    var pic;
+    var profileRef = firebase.database().ref("locations/" + location);
+    profileRef.child("picture").once('value', function(snapshot) {
+        pic = snapshot.val();
+        console.log(pic)
+
+    });
+    var storage = firebase.storage().ref();
+    var spaceRef = storage.child('places/' + pic);
+    var path = spaceRef.fullPath;
+
+            storage.child(path).getDownloadURL().then(function(url){
+                var image_url = url;
+                document.getElementById("viewport").src = image_url;
+                
+            }).catch(function(error) {
+            console.log("error")
+            console.log(error.code);
+            console.log(error.message);
+            });
+}
+
+function drawProfilePicture() {
+    console.log("drawing picture: ", location)
+    var pic;
+    var profileRef = firebase.database().ref("users/" + currentUser);
+    profileRef.child("picture").once('value', function(snapshot) {
+        pic = snapshot.val();
+        console.log(pic)
+
+    });
+    var storage = firebase.storage().ref();
+    var spaceRef = storage.child('profile/' + pic);
+    var path = spaceRef.fullPath;
+
+            storage.child(path).getDownloadURL().then(function(url){
+                var image_url = url;
+                document.getElementById("profilepic").src = image_url;
+                
+            }).catch(function(error) {
+            console.log("error")
+            console.log(error.code);
+            console.log(error.message);
+            });
 }
 
 //OPEN AND CLOSE SIDEBAR
