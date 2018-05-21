@@ -1,7 +1,3 @@
-  /*  p {
-    font-size: 20px;
-    }*/
-
 body {
     font-family: "Quicksand";
 } 
@@ -27,10 +23,10 @@ h1, header {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    padding: 10px;
 }
 
-.text, .outBtn, #theUsername {
+.text, .myBtn, #theUsername, #placeBtn {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -75,8 +71,6 @@ h1, header {
     left: 0;
     bottom: 0;
     width: 100%;
-    /*background: linear-gradient(#4286f4, #29f448);
-    background: linear-gradient(to bottom right, #d1f9ff, #005f6d);*/
     background: linear-gradient(#ffffff, #00adc1);
     z-index: 3;
 }
@@ -87,9 +81,8 @@ h1, header {
 
 #welcomeDiv {
     position: absolute;
-    top: 23%; /*35%*/
+    top: 23%;
     font-size: 18px;
-    /*text-shadow: 0 0 3px #ffffff;*/
 }
 
 #map {
@@ -99,7 +92,7 @@ h1, header {
 .openNav {
     font-size: 30px;
     cursor: pointer;
-    background-color: white;
+    background-color: #ffffff;
     padding-right: 3px;
     padding-left: 3px;
     border-radius: 3px;
@@ -127,7 +120,7 @@ h1, header {
     z-index: 2;
 }
 
-.sidenav .closebtn, .text {
+.sidenav, .closebtn, .text {
     text-decoration: none;
     font-size: 25px;
     color: #00adc1;
@@ -137,7 +130,6 @@ h1, header {
 }
 
 #theUsername {
-    text-decoration: none;
     font-size: 35px;
     color: #00adc1;
     display: block;
@@ -161,8 +153,8 @@ h1, header {
 .searchBar {
     padding: 10px 65px 10px 13px; 
     width: 180px; 
-    height: 25px; 
-    !important; border: 1px solid #e3e3e3; 
+    height: 25px;
+    border: 1px solid #e3e3e3; 
     border-radius: 100px; 
     background-color: #fff; 
     color: #444444; 
@@ -189,25 +181,19 @@ h1, header {
     color: #00adc1;
     font-family: "Quicksand";
     display: block;
+    background: none;
 }
 
-input[type=button] {
+#placeBtn {
     border-radius: 100px;
-    -webkit-border-radius: 100px;
-    padding: 5px;
+    padding: 10px;
     font-size: 16px;
-    border: 1px solid #00adc1; 
-    color: #00adc1;
+    border: 1px solid #ffffff; 
+    color: #ffffff;
     font-family: "Quicksand";
     display: block;
-    background: #ffffff;
-}
-
-#outBtnDiv {
-    display: block;
-    width: 300px;
-    position: fixed;
-    padding-top: 15vh;
+    background: none;
+    font-weight: bold;
 }
 
 #or {
@@ -237,12 +223,20 @@ input[type=button] {
     margin-left: 50px;
 }
 
+.closeList {
+    color: #ffffff;
+    display: block;
+    position: absolute;
+    right: 15px;
+    font-size: 40px;
+    margin-left: 50px;
+}
+
 #signupPage {
     padding-top: 50px;
 }
 
 #newPlace {
-    padding-top: 30px;
     text-align: center;
     text-decoration: none;
     color: #ffffff;
@@ -251,4 +245,12 @@ input[type=button] {
     height: 100%;
     background: linear-gradient(to bottom right, #00adc1, #ffffff);
     z-index: 2;
+}
+
+.placeForm {
+    padding-top: 30px;
+}
+
+.signOutDiv {
+    padding-top: 100px;
 }
