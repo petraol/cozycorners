@@ -427,6 +427,7 @@ function initMap() {
     }
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    getLocation();
 
     //setMarkers(beaches);
 
@@ -490,7 +491,7 @@ function getLocation() {
     origin: new google.maps.Point(0,0), // origin
     anchor: new google.maps.Point(0, 0) // anchor
   };
-        var marker = new google.maps.Marker({
+var marker = new google.maps.Marker({
     map: map,
     position: latLng,
     icon: icon
