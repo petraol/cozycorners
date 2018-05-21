@@ -121,18 +121,42 @@ function getAllPlaces() {
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
             };
-            
+
             var myLatLng = new google.maps.LatLng(place.location_lat, place.location_long);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
                 animation: google.maps.Animation.DROP,
                 title: place.place,
-                icon: icon
+                icon: icon,
+                username: place.username,
+                tags: place.tags
             });
 
-            markers.push(marker);
+            var i = new Image();
+            i.src = place.picture;
+
+            i.onload = function () {
+                marker.setIcon(icon); //If icon found go ahead and show it
+            }
+
+            i.onerror = function () {
+                marker.setIcon(null); //This displays brick colored standard marker icon in case image is not found.
+            }
             
+
+            var contentString = '<img src="'+place.picure+'"/>' + 
+            '<div id="info">' + '<p>' + place.description + '</p>' + '</div>';
+
+            var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+
+            markers.push(marker);
         });
     });
 }
@@ -172,19 +196,43 @@ function clearMarkers() {
 // Shows any markers currently in the array.
 function showMarkers() {
     setMapOnAll(map);
+    document.getElementById("mySidenav").style.width = "0";
 }
 
 function searchByName() {
     //document.getElementById("myPlace").innerHTML = "";
     search = document.getElementById("mySearch").value;
+    searchFilter = document.getElementById("searchFilter").value;
 
-                for (var i = 0; i < markers.length; i++) {
-                console.log(markers[i].title);
-                console.log(search);
-                if (markers[i].title != search) {
-                    markers[i].setMap(null);
-                }
+    for (var i = 0; i < markers.length; i++) {
+        //console.log(markers[i].username);
+        //console.log(markers[i].title);
+        //console.log(search);
+        console.log(searchFilter);
+        if (searchFilter == 'placeName') {
+            if (markers[i].title != search) {
+                markers[i].setMap(null);
             }
+        }
+
+        if (searchFilter == 'username') {
+            if (markers[i].username != search) {
+                markers[i].setMap(null);
+            }
+        }
+
+        //fungerar bara för 1 tag, ej när finns flera tags
+        if (searchFilter == 'tags') {
+            if (markers[i].tags != search) {
+                markers[i].setMap(null);
+            }
+        }
+        document.getElementById("mySidenav").style.width = "0";
+
+       /* if (markers[i].username != search) {
+            markers[i].setMap(null);
+        }*/
+    }
        /* return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var place = childSnapshot.val();
