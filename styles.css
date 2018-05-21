@@ -255,3 +255,17 @@ h1, header {
 .signOutDiv {
     padding-top: 100px;
 }
+
+.createPlaceBtn {
+    border-radius: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ffffff; 
+    color: #ffffff;
+    font-family: "Quicksand";
+    display: block;
+    background: none;
+    font-weight: bold;
+    float: right;
+    margin-right: 40px;
+}
