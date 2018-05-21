@@ -3,6 +3,7 @@ currentUser = null;
 places = new Array();
 var markers = [];
 let firstFile;
+let profileFile;
 var context;
 
 getAllPlaces();
@@ -11,6 +12,12 @@ picture = document.getElementById("picture");
 picture.addEventListener('change', function(evt) {
     console.log("laddar up fil!!!!")
       firstFile = evt.target.files[0] // upload the first file only
+  })
+
+profilepicture = document.getElementById("profilepicture");                
+profilepicture.addEventListener('change', function(evt) {
+    console.log("laddar up fil!!!!")
+      profileFile = evt.target.files[0] // upload the first file only
   })
 
 document.getElementById("loggedIn").style.display = "none";
@@ -62,6 +69,7 @@ function createPlace() {
 function createUser() {
     username = document.getElementById('new_username').value;
     password = document.getElementById('new_password').value;
+    profilepicture = document.getElementById("profilepicture");
     allUsers = [];
     var query = firebase.database().ref("users").orderByKey();
     query.once("value")
@@ -81,8 +89,24 @@ function createUser() {
                 try {
                     firebase.database().ref('users/' + username).set({
                         username: username,
-                        password: password
+                        password: password,
+                        picture: profileFile.name
                         });
+                        if (picture.size > 1024000) {
+                            window.alert("The profile picture you tried to upload is too big (MAX 1 MB)! Try again.");
+                            return;
+                        }
+
+                        else {
+                            console.log(picture.size)
+                            var storageRef = firebase.storage().ref();
+
+                            storageRef.child("profile/" + profileFile.name).put(profileFile)
+
+                            //storageRef.put(firstFile).then(function(snapshot) {
+                            //  console.log('Uploaded a blob or file!');
+                            //});
+                        }
                     console.log("Created new user: ", username)
                 }
                 catch(err) {
