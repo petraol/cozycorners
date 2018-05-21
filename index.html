@@ -25,8 +25,16 @@
 
     <!-- SIDEBAR -->
         <div id="mySidenav" class="sidenav">
-          <div class="closebtn" onclick="closeNav()">&times;</div>
-          <input type="text" class="searchBar" placeholder="Search">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <span>Search by:</span>
+            <select id="searchFilter">
+              <option value="placeName">place name</option>
+              <option value="username">username</option>
+              <option value="tags">tags</option>
+            </select>
+            <input type="text" id="mySearch" class="searchBar" placeholder="Search">
+            <button class="myBtn" onclick="searchByName()">search</button>
+            <button class="myBtn" onclick="showMarkers()">Show all places</button>
 
     <!-- LOG IN -->
           <div id="notLoggedIn">
@@ -34,10 +42,10 @@
             <form>
                 <input type="text" class="searchBar" id="username" placeholder="Username"><br>
                 <input type="password" class="searchBar" id="password" placeholder="Password"><br>
-                <input type="button" value="Log in" onclick="fetchInfo()">
+                <input type="button" value="Log in" class="myBtn" onclick="fetchInfo()">
             </form>
             <p id="or">or</p>
-              <button class="outBtn" onclick="showSignupDetails()">Sign up</button>
+              <button class="myBtn" onclick="showSignupDetails()">Sign up</button>
           </div>
 
     <!-- SIGN UP -->
@@ -48,10 +56,10 @@
                 <br>
                 <input type="password" class="searchBar" id="new_password" placeholder="New Password">
                 <br>
-                <input class="outBtn" type="button" value="Create User" onclick="createUser()">
+                <input class="myBtn" type="button" value="Create User" onclick="createUser()">
             </form>
             <br>
-            <button class="outBtn" onclick="goBack()">Back</button>
+            <button class="myBtn" onclick="goBack()">Back</button>
           </div>
 
     <!-- LOGGED IN VIEW -->
@@ -73,7 +81,7 @@
                 Tags: <input class="searchBar" type="text" id="tags"><br>
                 Location (latitude): <input class="searchBar" type="text" id="location_lat"><br>
                 Location (longitude): <input class="searchBar" type="text" id="location_long"><br>
-                 <input id="outBtn" type="button" value="Create Place" onclick="createPlace()">
+                 <input class="myBtn" type="button" value="Create Place" onclick="createPlace()">
             </form>
             </div>
 
