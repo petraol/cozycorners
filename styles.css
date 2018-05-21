@@ -26,7 +26,7 @@ h1, header {
     padding: 10px;
 }
 
-.text, .myBtn, #theUsername, #placeBtn {
+.text, .outBtn, #theUsername, #placeBtn {
     display: block;
     margin-left: auto;
     margin-right: auto;

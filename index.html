@@ -34,7 +34,7 @@
             <form>
                 <input type="text" class="searchBar" id="username" placeholder="Username"><br>
                 <input type="password" class="searchBar" id="password" placeholder="Password"><br>
-                <input type="button" value="Log in" onclick="fetchInfo()">
+                <input type="button" value="Log in" class="outBtn" onclick="fetchInfo()">
             </form>
             <p id="or">or</p>
               <button class="outBtn" onclick="showSignupDetails()">Sign up</button>
@@ -58,7 +58,10 @@
           <div id="loggedIn">
             <img id="profilepic" class="center">
             <span id="theUsername">Username</span>
-            <span class="text" onclick="newPlace()">Add a cosy corners</span>        
+            <span class="text" onclick="newPlace()">Add a cosy corners</span>   
+            <div class="signOutDiv">
+                <button class="outBtn" onclick="signOut()">Sign out</button>
+            </div>      
           </div> 
           
         </div>

@@ -107,6 +107,8 @@ function fetchInfo() {
     firebase.database().ref('/users/' + username).on('value', function(snapshot) {
         if (snapshot.val() != null) {
             login(username, snapshot.val().password, password);
+            document.getElementById("username").value='';
+            document.getElementById("password").value='';
             }
         else {
             console.log("not a user")
@@ -340,6 +342,11 @@ function closeList() {
     document.getElementById("newPlace").style.display = "none";
     hamburger.style.display = "block";
     mapPage.style.display = "block";
+}
+
+function signOut() {
+    document.getElementById("loggedIn").style.display = "none";
+    document.getElementById("notLoggedIn").style.display = "block";
 }
 
 //MAP FUNCTIONS
