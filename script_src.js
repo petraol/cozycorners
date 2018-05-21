@@ -38,20 +38,20 @@ function createPlace() {
         });  
     
     if (picture.size > 1024000) {
-		        	window.alert("The profile picture you tried to upload is too big (MAX 1 MB)! Try again.");
-		        	return;
-		        }
+                    window.alert("The profile picture you tried to upload is too big (MAX 1 MB)! Try again.");
+                    return;
+                }
 
-		        else {
+                else {
                     console.log(picture.size)
-					var storageRef = firebase.storage().ref();
+                    var storageRef = firebase.storage().ref();
 
                     storageRef.child("places/" + firstFile.name).put(firstFile)
                     
                     //storageRef.put(firstFile).then(function(snapshot) {
                     //  console.log('Uploaded a blob or file!');
                     //});
-				}
+                }
     
     updateUser(name);
     //drawPicture(name);
@@ -107,8 +107,6 @@ function fetchInfo() {
     firebase.database().ref('/users/' + username).on('value', function(snapshot) {
         if (snapshot.val() != null) {
             login(username, snapshot.val().password, password);
-            document.getElementById("username").value='';
-            document.getElementById("password").value='';
             }
         else {
             console.log("not a user")
@@ -145,8 +143,23 @@ function getAllPlaces() {
             var place = childSnapshot.val();
             the_place = {place: place.place, description: place.description, location_lat: place.location_lat, locations_long: place.location_long, picture: place.picture, username: place.username, tags: place.tags};
             //----------------------------------------------------------------------------code for writing out places here!!!!!!!----------------------------------------------------------------------------------------
+                var pic;
+    var profileRef = firebase.database().ref("locations/" + place.place);
+    profileRef.child("picture").once('value', function(snapshot) {
+        pic = snapshot.val();
+        console.log(pic)
+
+    });
+    var storage = firebase.storage().ref();
+    var spaceRef = storage.child('places/' + pic);
+    var path = spaceRef.fullPath;
+    var image_url;
+            storage.child(path).getDownloadURL().then(function(url){
+                image_url = url;
+                console.log("image url:", image_url)
+
             var icon = {
-                url: place.picture,
+                url: image_url,
                 scaledSize: new google.maps.Size(50, 50),
                 origin: new google.maps.Point(0, 0),
                 anchor: new google.maps.Point(0, 0)
@@ -162,6 +175,10 @@ function getAllPlaces() {
             });
 
             markers.push(marker);
+                
+            })
+
+
             
         });
     });
@@ -342,11 +359,6 @@ function closeList() {
     document.getElementById("newPlace").style.display = "none";
     hamburger.style.display = "block";
     mapPage.style.display = "block";
-}
-
-function signOut() {
-    document.getElementById("loggedIn").style.display = "none";
-    document.getElementById("notLoggedIn").style.display = "block";
 }
 
 //MAP FUNCTIONS
