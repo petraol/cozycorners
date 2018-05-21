@@ -171,7 +171,9 @@ function getAllPlaces() {
                     map: map,
                     animation: google.maps.Animation.DROP,
                     title: place.place,
-                    icon: icon
+                    icon: icon,
+                    username: place.username,
+                    tags: place.tags
                 });
 
                 var i = new Image();
@@ -242,6 +244,7 @@ function clearMarkers() {
 // Shows any markers currently in the array.
 function showMarkers() {
     setMapOnAll(map);
+    document.getElementById("mySidenav").style.width = "0";
 }
 
 function searchByName() {
