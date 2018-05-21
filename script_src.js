@@ -435,6 +435,11 @@ function closeList() {
     mapPage.style.display = "block";
 }
 
+function signOut() {
+    document.getElementById("loggedIn").style.display = "none";
+    document.getElementById("notLoggedIn").style.display = "block";
+}
+
 //MAP FUNCTIONS
 var map;
 
