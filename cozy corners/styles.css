@@ -1,0 +1,256 @@
+body {
+    font-family: "Quicksand";
+} 
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}	
+
+ #welcome {
+	text-align: center;
+	color: #ffffff;
+}
+
+h1, header {
+	/*font-family: "Vibur"; */
+	text-align: center;
+	color: #ffffff;
+}
+
+ input {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.text, .myBtn, #theUsername, #placeBtn {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.center {
+	border-radius: 50%;
+	padding-top: 15px;
+	padding-bottom: 12px;
+	height: 250px;
+	width: 250px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#singupPage {
+	font-size: 20px;
+    color: #ffffff;
+    display: block;
+    padding-bottom: 10px;
+    padding-left: 60px;
+
+}
+
+#signupDiv {
+	padding-top: 45%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#signup {
+	height: 100%;
+	background: linear-gradient( to bottom right, #ffffff, #00adc1);
+}
+
+#target {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background: linear-gradient(#ffffff, #00adc1);
+	z-index: 3;
+}
+
+#welcome {
+	font-style: italic;
+}
+
+#welcomeDiv {
+	position: absolute;
+	top: 23%;
+	font-size: 18px;
+}
+
+#map {
+    height: 100%;
+}
+
+.openNav {
+	font-size: 30px;
+	cursor: pointer;
+	background-color: #ffffff;
+	padding-right: 3px;
+	padding-left: 3px;
+	border-radius: 3px;
+}
+
+#openIt {
+	padding-left: 10px;
+	padding-top: 7px;
+	position: fixed;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 2;
+}
+
+.sidenav, .closebtn, .text {
+    text-decoration: none;
+    font-size: 25px;
+    color: #00adc1;
+    display: block;
+    transition: 0.3s;
+    padding-bottom: 5px;
+}
+
+#theUsername {
+    font-size: 35px;
+    color: #00adc1;
+    display: block;
+    transition: 0.3s;
+    padding-bottom: 5px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav .closebtn, .text {font-size: 18px;}
+}
+
+.searchBar {
+    padding: 10px 65px 10px 13px; 
+    width: 180px; 
+    height: 25px;
+    border: 1px solid #e3e3e3; 
+    border-radius: 100px; 
+    background-color: #fff; 
+    color: #444444; 
+    font-size: 16px; 
+    line-height: 18px !important; 
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    color: #2d2626;
+    /*background: url("images/search3.png")  right center no-repeat; */
+}
+
+::placeholder {
+    font-size: 18px;
+    font-style: italic;
+    font-family: "Quicksand";
+}
+
+.myBtn {
+	border-radius: 100px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #00adc1; 
+	color: #00adc1;
+	font-family: "Quicksand";
+	display: block;
+    background: none;
+}
+
+#placeBtn {
+    border-radius: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ffffff; 
+    color: #ffffff;
+    font-family: "Quicksand";
+    display: block;
+    background: none;
+    font-weight: bold;
+}
+
+#or {
+	text-align: center;
+	font-size: 18px;
+	color: #00adc1;
+}
+
+#logo {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;   
+}
+
+#notLoggedIn {
+    padding-top: 8vh;
+}
+
+.closeBtn {
+    color: #00adc1;
+    display: block;
+    position: absolute;
+    right: 15px;
+    font-size: 40px;
+    margin-left: 50px;
+}
+
+.closeList {
+    color: #ffffff;
+    display: block;
+    position: absolute;
+    right: 15px;
+    font-size: 40px;
+    margin-left: 50px;
+}
+
+#signupPage {
+    padding-top: 50px;
+}
+
+#newPlace {
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    display: block;
+    height: 100%;
+    background: linear-gradient(to bottom right, #00adc1, #ffffff);
+    z-index: 2;
+}
+
+.placeForm {
+    padding-top: 30px;
+}
+
+.signOutDiv {
+    padding-top: 100px;
+}
