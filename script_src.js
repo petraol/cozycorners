@@ -247,14 +247,37 @@ function showMarkers() {
 function searchByName() {
     //document.getElementById("myPlace").innerHTML = "";
     search = document.getElementById("mySearch").value;
+    searchFilter = document.getElementById("searchFilter").value;
 
-                for (var i = 0; i < markers.length; i++) {
-                console.log(markers[i].title);
-                console.log(search);
-                if (markers[i].title != search) {
-                    markers[i].setMap(null);
-                }
+    for (var i = 0; i < markers.length; i++) {
+        //console.log(markers[i].username);
+        //console.log(markers[i].title);
+        //console.log(search);
+        console.log(searchFilter);
+        if (searchFilter == 'placeName') {
+            if (markers[i].title != search) {
+                markers[i].setMap(null);
             }
+        }
+
+        if (searchFilter == 'username') {
+            if (markers[i].username != search) {
+                markers[i].setMap(null);
+            }
+        }
+
+        //fungerar bara för 1 tag, ej när finns flera tags
+        if (searchFilter == 'tags') {
+            if (markers[i].tags != search) {
+                markers[i].setMap(null);
+            }
+        }
+        document.getElementById("mySidenav").style.width = "0";
+
+       /* if (markers[i].username != search) {
+            markers[i].setMap(null);
+        }*/
+    }
        /* return firebase.database().ref('/locations').orderByChild('username').on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var place = childSnapshot.val();
@@ -272,6 +295,7 @@ function searchByName() {
         });
     });*/
 }
+
 
 function filterPlaceByUser() {
     //document.getElementById("myPlace").innerHTML = "";

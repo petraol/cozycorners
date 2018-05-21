@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
         <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
+        <link rel="icon" sizes="192x192" href="images/cosycorners2.png">
         <link rel="manifest" href="manifest.json">
     </head>
     <body>
@@ -26,8 +27,16 @@
 
     <!-- SIDEBAR -->
         <div id="mySidenav" class="sidenav">
-          <div class="closebtn" onclick="closeNav()">&times;</div>
-          <input type="text" class="searchBar" placeholder="Search">
+            <div class="closebtn" onclick="closeNav()">&times;</div>
+            <span>Search by:</span>
+            <select id="searchFilter">
+              <option value="placeName">place name</option>
+              <option value="username">username</option>
+              <option value="tags">tags</option>
+            </select>
+            <input type="text" id="mySearch" class="searchBar" placeholder="Search">
+            <button class="myBtn" onclick="searchByName()">search</button>
+            <button class="myBtn" onclick="showMarkers()">Show all places</button>
 
     <!-- LOG IN -->
           <div id="notLoggedIn">
