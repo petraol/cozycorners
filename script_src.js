@@ -131,8 +131,8 @@ function fetchInfo() {
     firebase.database().ref('/users/' + username).on('value', function(snapshot) {
         if (snapshot.val() != null) {
             login(username, snapshot.val().password, password);
-            username.value='';
-            password.value='';
+            document.getElementById("username").value='';
+            document.getElementById("password").value='';
             }
         else {
             console.log("not a user")
