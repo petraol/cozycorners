@@ -187,7 +187,7 @@ function getAllPlaces() {
                 
 
                 var contentString = '<img id="infoWindowPic" src='+image_url+'"/>' + 
-                '<div id="info">' + '<p>' + place.description + '</p>' + '</div>';
+                '<div id="info">' + '<p id="infoWindowText">' + place.description + '</p>' + '</div>';
 
                 var infowindow = new google.maps.InfoWindow({
                       content: contentString
