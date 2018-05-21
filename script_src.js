@@ -158,24 +158,47 @@ function getAllPlaces() {
                 image_url = url;
                 console.log("image url:", image_url)
 
-            var icon = {
-                url: image_url,
-                scaledSize: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(0, 0)
-            };
-            
-            var myLatLng = new google.maps.LatLng(place.location_lat, place.location_long);
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: place.place,
-                icon: icon
-            });
-
-            markers.push(marker);
+                var icon = {
+                    url: image_url,
+                    scaledSize: new google.maps.Size(50, 50),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 0)
+                };
                 
+                var myLatLng = new google.maps.LatLng(place.location_lat, place.location_long);
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    title: place.place,
+                    icon: icon
+                });
+
+                var i = new Image();
+                i.src = image_url;
+
+                i.onload = function () {
+                    marker.setIcon(icon); //If icon found go ahead and show it
+                }
+
+                i.onerror = function () {
+                    marker.setIcon(null); //This displays brick colored standard marker icon in case image is not found.
+                }
+                
+
+                var contentString = '<img src='+image_url+' style="width:200px;height:100px;"/>' + 
+                '<div id="info">' + '<p>' + place.description + '</p>' + '</div>';
+
+                var infowindow = new google.maps.InfoWindow({
+                      content: contentString
+                    });
+
+                    marker.addListener('click', function() {
+                      infowindow.open(map, marker);
+                    });
+
+                markers.push(marker);
+                    
             })
 
 
