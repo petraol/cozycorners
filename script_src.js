@@ -474,6 +474,29 @@ function initMap() {
     });*/
   }
 
+function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        pos.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    function showPosition(position) {
+      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      map.panTo(latLng);
+      var icon = {
+    url: 'https://cdn1.iconfinder.com/data/icons/pretty-office-part-13-simple-style/512/user-orange.png', // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+  };
+        var marker = new google.maps.Marker({
+    map: map,
+    position: latLng,
+    icon: icon
+  });
+}
+
   function placeMarkerAndPanTo(latLng, map) {
     var icon = {
         url: 'https://www.nwf.org/-/media/NEW-WEBSITE/Shared-Folder/Wildlife/Reptiles/reptile_green-sea-turtle_600x300.ashx',
