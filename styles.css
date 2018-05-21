@@ -118,6 +118,7 @@ h1, header {
     transition: 0.5s;
     padding-top: 60px;
     z-index: 2;
+    overflow-y: scroll;
 }
 
 .sidenav, .closebtn, .text {
@@ -212,11 +213,6 @@ h1, header {
 
 #notLoggedIn {
     padding-top: 4vh;
-    overflow-y: scroll;
-}
-
-#loggedIn {
-    overflow-y: scroll;
 }
 
 .closeBtn {
