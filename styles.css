@@ -269,3 +269,10 @@ h1, header {
     float: right;
     margin-right: 40px;
 }
+
+#infoWindowPic {
+    height: auto; 
+    width: auto; 
+    max-width: 200px; 
+    max-height: 200px;
+}
